@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import { Tilt } from "react-tilt";
+import { motion } from "framer-motion";
+import LoadingAnimation from "./Loader";
+const NewsCard = ({ title, urlToImage, description, source, author, publishedAt }) => {
+  const [loading, setLoading] = useState(true);
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+  const handleError=()=>{
+    setLoading(true);
+  };
+  const shortDescription = (description?.length > 100 ? description.slice(0, 100) + "..." : description) || "No description available.";
+  const shortTitle = (title?.length > 30 ? title.slice(0, 30) + "..." : title) || "Untitled";
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      style={{ cursor: "pointer" }}
+    >
+      <Tilt options={{ max: 10, scale: 1.05, speed: 300 }} className="tilt-card">
+        <div className="flex justify-center items-center bg-black rounded-lg p-5 bg-opacity-20 shadow-lg w-80 h-[30rem] mx-auto mb-10 transition-all duration-300 ease-in-out transform hover:scale-104 hover:shadow-2xl hover:border-2 hover:border-blue-900 relative">
+          <div className="flex flex-col justify-center items-center w-full">
+            <h3 className="text-lg font-semibold text-center text-white mb-8">
+              {shortTitle}
+            </h3>
+            {loading && <LoadingAnimation></LoadingAnimation>}
+            <img
+            src={urlToImage}
+            alt={""}
+            className="w-full h-36 object-cover rounded-lg mb-4"
+            onLoad={handleImageLoad}
+            onError={handleError}
+            style={{ display: loading ? 'none' : 'block' }}
+            />
+            <p className="text-sm text-gray-300 mb-3 text-center">{shortDescription}</p>
+            <div className="text-xs text-gray-400 text-center">
+              <p><strong className="text-blue-400">Source:</strong> {source?.name || source || "Unknown source"}</p>
+              <p><strong className="text-blue-400">Author:</strong> {author || "Unknown author"}</p>
+              <p><strong className="text-blue-400">Published At:</strong> {new Date(publishedAt).toLocaleDateString() || "Unknown date"}</p>
+            </div>
+          </div>
+        </div>
+      </Tilt>
+    </motion.div>
+  );
+};
+
+export default NewsCard;

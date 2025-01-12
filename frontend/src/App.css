@@ -1,0 +1,30 @@
+/* styles.css */
+@keyframes fadeInAndScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fadeOutAndScale {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+  
+  .fade-in-scale {
+    animation: fadeInAndScale 1s ease-out forwards; /* Logo appearing */
+  }
+  .fade-out-scale {
+    animation: fadeOutAndScale 1s ease-in forwards; /* Logo disappearing */
+  }
+  
