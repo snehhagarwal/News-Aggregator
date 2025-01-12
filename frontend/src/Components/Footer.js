@@ -10,7 +10,6 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 dark:bg-gray-900 text-white px-6 py-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center text-center">
-        {/* About Section */}
         <div className="space-y-6 md:space-y-4">
           <h3 className="text-2xl font-semibold text-gray-200">
             About Global Pulse
@@ -20,8 +19,6 @@ const Footer = () => {
             platform delivers real-time updates tailored to your interests.
           </p>
         </div>
-
-        {/* Quick Links Section */}
         <div className="space-y-6 md:space-y-4">
           <h3 className="text-2xl font-semibold text-gray-200">Quick Links</h3>
           <ul className="space-y-3">
@@ -59,8 +56,6 @@ const Footer = () => {
             </motion.li>
           </ul>
         </div>
-
-        {/* Stay Connected Section */}
         <div className="space-y-6 md:space-y-4">
           <h3 className="text-2xl font-semibold text-gray-200">
             Stay Connected
@@ -73,7 +68,7 @@ const Footer = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <Facebook fontSize="small" /> {/* Facebook Icon */}
+              <Facebook fontSize="small" />
             </motion.a>
             <motion.a
               href="#twitter"
@@ -82,7 +77,7 @@ const Footer = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <Twitter fontSize="small" /> {/* Twitter Icon */}
+              <Twitter fontSize="small" />
             </motion.a>
             <motion.a
               href="#instagram"
@@ -91,7 +86,7 @@ const Footer = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <Instagram fontSize="small" /> {/* Instagram Icon */}
+              <Instagram fontSize="small" /> 
             </motion.a>
             <motion.a
               href="#linkedin"
@@ -100,13 +95,11 @@ const Footer = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <LinkedIn fontSize="small" /> {/* LinkedIn Icon */}
+              <LinkedIn fontSize="small" />
             </motion.a>
           </div>
         </div>
       </div>
-
-      {/* Footer Bottom Section */}
       <div className="text-center mt-8 text-sm text-gray-400">
         <p>© {new Date().getFullYear()} Global Pulse. All rights reserved.</p>
       </div>

@@ -36,15 +36,15 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center p-8 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700">
-      <div className="mb-6 flex items-center gap-4">
-        <input
-          type="text"
-          placeholder="Search news by title..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 w-72"
-        />
-      </div>
+     <div className="mb-6 w-screen flex flex-col sm:flex-row sm:justify-center md:justify-end md:mr-[14%] gap-4">
+  <input
+    type="text"
+    placeholder="Search news by title..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-2 border-blue-500 focus:ring-white w-full sm:w-72"
+  />
+</div>
 
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {currentItems.length > 0 ? (
