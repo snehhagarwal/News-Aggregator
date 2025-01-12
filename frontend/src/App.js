@@ -8,8 +8,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<AnimatedComponent />} />
-          <Route path="/countries" element={< />} />
-          <Route path="/headlines" element={<Headlines />} />
+          <Route path="/countries" element={<Headlines/>} />
         </Routes>
       </Router>
     </div>

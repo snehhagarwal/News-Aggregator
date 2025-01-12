@@ -1,88 +1,90 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'
-import Loader from "./Loader";
 import NewsCard from "./NewsCard";
-
+import { motion } from "framer-motion";
+import data from "./DummyData";
 function Headlines() {
-  const { category } = useParams();
-  const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalArticles, setTotalArticles] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [fetchError, setFetchError] = useState(null);
-
-  function goToPreviousPage() {
-    setCurrentPage(currentPage - 1);
-  }
-
-  function goToNextPage() {
-    setCurrentPage(currentPage + 1);
-  }
-
-  const articlesPerPage = 6;
-
+  const itemsPerPage = 8;
+  const [searchQuery, setSearchQuery] = useState("");
+  const newsData = data.articles;
   useEffect(() => {
-    setLoading(true);
-    setFetchError(null);
-    const categoryFilter = category ? `&category=${category}` : "";
-    fetch(`https://news-aggregator-dusky.vercel.app/top-headlines?language=en${categoryFilter}&page=${currentPage}&pageSize=${articlesPerPage}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok');
-      })
-      .then((json) => {
-        if (json.success) {
-          setTotalArticles(json.data.totalResults);
-          setArticles(json.data.articles);
-        } else {
-          setFetchError(json.message || 'An error occurred');
-        }
-      })
-      .catch((error) => {
-        console.error('Fetch error:', error);
-        setFetchError('Failed to fetch news. Please try again later.');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [currentPage, category]);
+    setCurrentPage(1);
+  }, [searchQuery]);
+  const filteredData = newsData.filter((newsItem) =>
+    newsItem.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
-    <>
-      {fetchError && <div className="text-red-500 mb-4">{fetchError}</div>}
-      <div className='my-10 cards grid lg:place-content-center md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xs:grid-cols-1 xs:gap-4 md:gap-10 lg:gap-14 md:px-16 xs:p-3 '>
-        {!loading ? (
-          articles.length > 0 ? (
-            articles.map((article, index) => (
-              <NewsCard
-                key={index}
-                title={article.title}
-                description={article.description}
-                imgUrl={article.urlToImage}
-                publishedAt={article.publishedAt}
-                url={article.url}
-                author={article.author}
-                source={article.source.name}
-              />
-            ))
-          ) : (
-            <p>No articles found for this category or criteria.</p>
-          )
+    <div className="flex flex-col items-center p-8 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700">
+     <div className="mb-6 w-screen flex flex-col sm:flex-row sm:justify-center md:justify-end md:mr-[14%] gap-4">
+  <input
+    type="text"
+    placeholder="Search news by title..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-2 border-blue-500 focus:ring-white w-full sm:w-72"
+  />
+</div>
+
+      <div className="flex flex-wrap justify-center gap-6 mb-8">
+        {currentItems.length > 0 ? (
+          currentItems.map((newsItem, index) => (
+            <NewsCard key={index} {...newsItem} />
+          ))
         ) : (
-          <Loader />
+          <p className="text-white text-lg">No results found.</p>
         )}
       </div>
-      {!loading && articles.length > 0 && (
-        <div className="pagination flex justify-center gap-14 my-10 items-center">
-          <button disabled={currentPage <= 1} className='pagination-btn' onClick={goToPreviousPage}>Prev</button>
-          <p className='font-semibold opacity-80'>{currentPage} of {Math.ceil(totalArticles / articlesPerPage)}</p>
-          <button className='pagination-btn' disabled={currentPage >= Math.ceil(totalArticles / articlesPerPage)} onClick={goToNextPage}>Next</button>
+
+      {totalPages > 1 && currentItems.length > 0 && (
+        <div className="flex justify-center items-center gap-6 mb-4">
+          <motion.button
+            className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg text-lg shadow-lg hover:scale-105 hover:shadow-xl focus:outline-none disabled:bg-gray-400 transition-all duration-300"
+            onClick={handlePrevious}
+            disabled={currentPage === 1}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Previous
+          </motion.button>
+          <motion.span
+            className="text-xl text-white font-semibold"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {`Page ${currentPage} of ${totalPages}`}
+          </motion.span>
+          <motion.button
+            className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg text-lg shadow-lg hover:scale-105 hover:shadow-xl focus:outline-none disabled:bg-gray-400 transition-all duration-300"
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Next
+          </motion.button>
         </div>
       )}
-    </>
+    </div>
   );
-}
+};
 
 export default Headlines;
