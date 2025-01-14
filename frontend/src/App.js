@@ -5,6 +5,10 @@ import Headlines from "./Components/Headlines";
 import Countries from "./Components/Countries";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import ContatUs from "./Components/ContatUs";
+import AboutUs from "./Components/AboutUs";
+import NotFoundPage from "./Components/NotFoundPage";
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +31,19 @@ function App() {
             <Headlines />
             <Footer />
           </>} />
+          <Route path="/aboutus" element={
+            <>
+            <Header />
+            <AboutUs />
+            <Footer />
+          </>} />
+          <Route path="/contactus" element={
+            <>
+            <Header />
+            <ContatUs />
+            <Footer />
+          </>} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>

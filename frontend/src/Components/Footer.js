@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const buttonVariants = {
@@ -32,29 +33,33 @@ const Footer = () => {
               Home
             </motion.li>
             <motion.li
-              className="text-sm text-gray-300 hover:text-blue-400 cursor-pointer"
+              className="text-sm mb-3 text-gray-300 hover:text-blue-400 cursor-pointer"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
             >
               Top Headlines
             </motion.li>
+            <Link to={"/aboutus"}>
+            <motion.li
+              className="text-sm mb-3 text-gray-300 hover:text-blue-400 cursor-pointer"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              AboutUs
+            </motion.li>
+            </Link>
+            <Link to={"/contactus"}>
             <motion.li
               className="text-sm text-gray-300 hover:text-blue-400 cursor-pointer"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
             >
-              Technology
+              ContactUs  
             </motion.li>
-            <motion.li
-              className="text-sm text-gray-300 hover:text-blue-400 cursor-pointer"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Entertainment
-            </motion.li>
+            </Link>
           </ul>
         </div>
         <div className="space-y-6 md:space-y-4">
