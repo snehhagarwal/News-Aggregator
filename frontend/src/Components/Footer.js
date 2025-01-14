@@ -8,7 +8,8 @@ const Footer = () => {
     tap: { scale: 0.95 },
   };
   return (
-    <footer className="bg-gray-800 dark:bg-gray-900 text-white px-6 py-12">
+<footer className="bg-black bg-opacity-90 backdrop-blur-lg text-white px-6 py-12 shadow-2xl shadow-slate-400">
+
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center text-center">
         <div className="space-y-6 md:space-y-4">
           <h3 className="text-2xl font-semibold text-gray-200">

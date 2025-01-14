@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Home from "./Home";
-import img from ".//../Assets/Logo.png";
+import vid from "../Assets/vid1.mp4";
 import Header from "./Header";
 import Footer from "./Footer";
+
 const AnimatedComponent = () => {
   const [visible, setVisible] = useState(true);
   const [showHome, setShowHome] = useState(false);
@@ -16,16 +17,18 @@ const AnimatedComponent = () => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="w-full h-full bg-gradient-to-r from-custom-start via-custom-mid-1 via-custom-mid-2 via-custom-mid-3 to-custom-end flex items-center justify-center bg-opacity-20">
+    <div className="w-full h-full bg-black flex items-center justify-center ">
       {visible && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-custom-start via-custom-mid-1 via-custom-mid-2 via-custom-mid-3 to-custom-end flex items-center justify-center h-screen w-screen fade-in-scale bg-opacity-15">
-          <img
-            src={img}
-            alt=""
-            className="object-cover w-2/5 h-auto ease-in-out"
-          ></img>
-        </div>
-      )}
+          <div className="absolute inset-0 flex items-center justify-center h-screen w-screen fade-in-scale bg-opacity-15">
+            <video
+              src={vid}
+              autoPlay
+              loop
+              muted
+              className="w-full h-full object-cover"
+            ></video>
+          </div>
+        )}
       {showHome && (
         <div className="transition-opacity duration-1000 opacity-100 fade-in-scale w-full h-full">
           <Header></Header>

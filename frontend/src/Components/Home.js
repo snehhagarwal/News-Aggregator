@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewsCard from "./NewsCard";
 import { motion } from "framer-motion";
-import data from "./DummyData"; // Make sure this path is correct
+import data from "./DummyData";
 
 const Home = () => {
   const itemsPerPage = 8;
@@ -42,10 +42,9 @@ const Home = () => {
     placeholder="Search news by title..."
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-2 border-blue-500 focus:ring-white w-full sm:w-72"
+    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 shadow-sm shadow-slate-200 focus:outline-none focus:ring-2  focus:ring-white w-full sm:w-72"
   />
 </div>
-
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {currentItems.length > 0 ? (
           currentItems.map((newsItem, index) => (

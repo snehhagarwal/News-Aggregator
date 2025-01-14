@@ -13,40 +13,35 @@ function Headlines() {
   const filteredData = newsData.filter((newsItem) =>
     newsItem.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
   };
-
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-
   return (
     <div className="flex flex-col items-center p-8 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700">
      <div className="mb-6 w-screen flex flex-col sm:flex-row sm:justify-center md:justify-end md:mr-[14%] gap-4">
-  <input
+     <input
     type="text"
     placeholder="Search news by title..."
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 border-2 border-blue-500 focus:ring-white w-full sm:w-72"
+    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 shadow-sm shadow-slate-200 focus:outline-none focus:ring-2 focus:ring-white w-full sm:w-72"
   />
 </div>
-
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {currentItems.length > 0 ? (
           currentItems.map((newsItem, index) => (
-            <NewsCard key={index} {...newsItem} />
+            <NewsCard key={index}{...newsItem} />
           ))
         ) : (
           <p className="text-white text-lg">No results found.</p>
