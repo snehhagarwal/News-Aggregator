@@ -1,12 +1,11 @@
 import React from 'react';
-import SideBar from './SideBar';
-import DashBoardHome from './DashBoardHome';
-
-const DashBoardMain = () => {
+import AdSideBar from './AdSideBar';
+import DashBoardHome from './../DashBoardHome';
+const AdDashBoardMain = () => {
   return (
     <div className='flex bg-gradient-to-b from-gray-900 to-gray-800 '>
       <div className='w-[20%]'>
-        <SideBar/>
+        <AdSideBar/>
       </div>
 
       <div className='bg-[#232323] w-[80%] h-screen'>
@@ -16,4 +15,4 @@ const DashBoardMain = () => {
   );
 };
 
-export default DashBoardMain;
+export default AdDashBoardMain;
