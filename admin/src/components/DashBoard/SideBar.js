@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Home, LiveTv, Report, Settings } from '@mui/icons-material';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const SideBar = () => {
   return (
     <motion.div
@@ -42,28 +42,24 @@ const SideBar = () => {
             <LiveTv className="mr-3 text-green-400" />
             Live Feed
           </motion.li>
+          <motion.li
+            className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >
+            <AddCircleOutlineIcon className="mr-3 text-yellow-400" />
+            Add News
+          </motion.li>
 
-          {/* Breaking News */}
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
             <Report className="mr-3 text-red-400" />
-            Breaking News
-          </motion.li>
-
-          {/* Reports */}
-          <motion.li
-            className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >
-            <Report className="mr-3 text-yellow-400" />
             Reports
           </motion.li>
 
-          {/* Settings */}
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
             whileHover={{ scale: 1.05 }}
