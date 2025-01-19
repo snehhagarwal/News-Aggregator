@@ -19,7 +19,7 @@ const NewsCard = ({ title, urlToImage, description, source, author, publishedAt 
   transition={{ duration: 1 }}
   style={{ cursor: "pointer" }}
 >
-  <Tilt options={{ max: 10, scale: 1.05, speed: 300 }} className="tilt-card">
+  <Tilt options={{ max: 10, scale: 1.05, speed: 300 }} className="tilt-card z-10">
     <div className="flex justify-center items-center bg-black rounded-lg p-5 bg-opacity-20 shadow-md shadow-slate-200 w-80 h-[30rem] mx-auto mb-10 transition-all duration-300 ease-in-out transform hover:scale-104 hover:shadow-2xl hover:border-2 hover:border-blue-900 relative">
       <div className="flex flex-col justify-center items-center w-full">
         <h3 className="text-lg font-semibold text-center text-white mb-8">

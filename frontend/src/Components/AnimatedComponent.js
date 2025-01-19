@@ -3,7 +3,6 @@ import Home from "./Home";
 import vid from "../Assets/vid1.mp4";
 import Header from "./Header";
 import Footer from "./Footer";
-
 const AnimatedComponent = () => {
   const [visible, setVisible] = useState(true);
   const [showHome, setShowHome] = useState(false);
@@ -12,7 +11,7 @@ const AnimatedComponent = () => {
       setVisible(false);
       setTimeout(() => {
         setShowHome(true);
-      }, 0);
+      }, );
     }, 2000);
     return () => clearTimeout(timer);
   }, []);

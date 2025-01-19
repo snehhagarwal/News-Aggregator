@@ -79,7 +79,7 @@ const Header = () => {
             Top Headlines
           </button>
           {showHeadlinesDropdown && (
-            <ul className="absolute top-full left-0 bg-gray-700 mt-2 w-48 rounded-lg shadow-lg z-50 overflow-y-auto max-h-48">
+            <ul className="absolute top-full left-0 bg-gray-700 mt-2 w-48 rounded-lg shadow-lg z-100 overflow-y-auto max-h-48">
               {categories.map((category, index) => (
                 <li key={index} className="hover:bg-gray-600">
                   <Link
