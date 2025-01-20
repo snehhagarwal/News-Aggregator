@@ -36,7 +36,7 @@ const AddNews = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-5 ml-80">
+    <div className="flex flex-col items-center bg-gray-900 justify-center w-full p-5 ">
       <motion.div
         className="w-full max-w-xl bg-gray-900 p-8 rounded-xl shadow-2xl"
         initial={{ opacity: 0 }}
