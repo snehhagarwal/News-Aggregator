@@ -1,35 +1,31 @@
-import React, { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-
-export default function Login() {
-  const router = useRouter()
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+function AdministratorLogin() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  })
-  const [error, setError] = useState("")
+  });
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    //auth
+    e.preventDefault();
     try {
       if (formData.email && formData.password) {
-        router.push("/dashboard")
+        navigate("/dashboard");
       } else {
-        throw new Error("Invalid credentials")
+        throw new Error("Invalid credentials");
       }
     } catch (err) {
-      setError("Invalid credentials")
+      setError("Invalid credentials");
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-lg">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white">Welcome Back</h2>
-          <p className="mt-2 text-gray-400">Please sign in to your account</p>
+          <h2 className="text-3xl font-bold text-white">Login as administrator</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -37,7 +33,7 @@ export default function Login() {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="text-gray-300">
+              <label  className="text-gray-300">
                 Email
               </label>
               <input
@@ -78,7 +74,7 @@ export default function Login() {
                 Remember me
               </label>
             </div>
-            <Link href="/forgot-password" className="text-sm text-blue-500 hover:text-blue-400">
+            <Link to="/forgot-password" className="text-sm text-blue-500 hover:text-blue-400">
               Forgot password?
             </Link>
           </div>
@@ -93,12 +89,12 @@ export default function Login() {
 
         <p className="text-center text-gray-400">
           Don't have an account?{" "}
-          <Link href="/signup" className="text-blue-500 hover:text-blue-400">
+          <Link to="/signup" className="text-blue-500 hover:text-blue-400">
             Sign up
           </Link>
         </p>
       </div>
     </div>
-  )
+  );
 }
-
+export default AdministratorLogin;
