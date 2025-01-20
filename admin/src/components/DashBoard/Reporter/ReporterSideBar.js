@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, LiveTv, Report, Settings } from '@mui/icons-material';
+import { Home, LiveTv, Report } from '@mui/icons-material';
+import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const SideBar = () => {
   return (
@@ -10,8 +11,7 @@ const SideBar = () => {
       animate={{ x: 0 }}
       transition={{ type: 'spring', stiffness: 100, damping: 25 }}
     >
-      <div className="text-white p-6">
-        {/* Menu Header */}
+      <div className="text-white p-6">  
         <motion.h1
           className="text-2xl font-semibold border-b border-gray-700 pb-4"
           initial={{ opacity: 0 }}
@@ -65,8 +65,8 @@ const SideBar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <Settings className="mr-3 text-purple-400" />
-            Settings
+            <LogoutIcon className="mr-3 text-purple-400" />
+            Logout
           </motion.li>
         </ul>
       </div>

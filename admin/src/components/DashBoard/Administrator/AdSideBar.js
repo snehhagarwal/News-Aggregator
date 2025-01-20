@@ -1,8 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, LiveTv, Report, Settings } from '@mui/icons-material';
+import { Home, LiveTv, Report } from '@mui/icons-material';
+import LogoutIcon from '@mui/icons-material/Logout';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-const SideBar = () => {
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
+const AdSideBar = ({ setActivePage }) => {
   return (
     <motion.div
       className="bg-gray-900 h-screen border-r border-gray-700 shadow-lg"
@@ -11,7 +15,6 @@ const SideBar = () => {
       transition={{ type: 'spring', stiffness: 100, damping: 25 }}
     >
       <div className="text-white p-6">
-        {/* Menu Header */}
         <motion.h1
           className="text-2xl font-semibold border-b border-gray-700 pb-4"
           initial={{ opacity: 0 }}
@@ -21,52 +24,75 @@ const SideBar = () => {
           MENU
         </motion.h1>
 
-        {/* Menu Items */}
         <ul className="mt-6 space-y-4">
-          {/* Home */}
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('home')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <Home className="mr-3 text-blue-400" />
+            <Home className="mr-3 text-cyan-400" />
             Home
           </motion.li>
 
-          {/* Live Feed */}
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('liveFeed')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <LiveTv className="mr-3 text-green-400" />
+            <LiveTv className="mr-3 text-teal-400" />
             Live Feed
           </motion.li>
+
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('addNews')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <AddCircleOutlineIcon className="mr-3 text-yellow-400" />
+            <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
             Add News
           </motion.li>
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('approveNews')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <Report className="mr-3 text-red-400" />
+            <AddTaskIcon className="mr-3 text-amber-500" />
+            Approve News
+          </motion.li>
+
+          <motion.li
+            className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('addReporter')}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >
+            <HowToRegIcon className="mr-3 text-green-400" />
+            Add Reporter
+          </motion.li>
+
+          <motion.li
+            className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('reports')}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >
+            <Report className="mr-3 text-red-500" />
             Reports
           </motion.li>
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => alert('Logout action!')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
-            <Settings className="mr-3 text-purple-400" />
-            Settings
+            <LogoutIcon className="mr-3 text-purple-500" />
+            Logout
           </motion.li>
         </ul>
       </div>
@@ -74,4 +100,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default AdSideBar;
