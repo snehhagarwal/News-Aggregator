@@ -13,7 +13,7 @@ const AddNews = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    imageFile: null, // Updated for image upload
+    imageFile: null, 
     country: "",
     category: "",
     date: "",
@@ -31,7 +31,7 @@ const AddNews = () => {
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      imageFile: e.target.files[0], // Handle image file
+      imageFile: e.target.files[0], 
     });
   };
 
