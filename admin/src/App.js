@@ -11,9 +11,10 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/Administrator" element={<AdDashBoardMain/>}/>
         <Route path="/Reporter" element={<ReporterDashBoardMain/>}/>
+        <Route path="/Login" element={<Login/>}/>
+        <Route path="/SignUp" element={<Signup/>}/> 
       </Routes>
      </Router>
-
     </div>
   );
 }
