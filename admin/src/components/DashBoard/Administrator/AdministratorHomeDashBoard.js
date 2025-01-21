@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const DashBoardHome = () => {
+const AdministratorHomeDashBoard = () => {
     const data = [
         { name: 'Mon', uv: 4000 },
         { name: 'Tue', uv: 3000 },
@@ -120,4 +120,4 @@ const DashBoardHome = () => {
     );
 };
 
-export default DashBoardHome;
+export default AdministratorHomeDashBoard;

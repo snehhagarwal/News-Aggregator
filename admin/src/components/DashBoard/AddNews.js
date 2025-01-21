@@ -8,12 +8,11 @@ import {
   Tag,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
-
 const AddNews = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    imageFile: null, 
+    imageFile: null,
     country: "",
     category: "",
     date: "",
@@ -31,7 +30,7 @@ const AddNews = () => {
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      imageFile: e.target.files[0], 
+      imageFile: e.target.files[0],
     });
   };
 
@@ -46,8 +45,6 @@ const AddNews = () => {
         <h2 className="text-3xl text-blue-500 font-semibold text-center mb-6">
           Add News Article
         </h2>
-
-        {/* News Title */}
         <div className="mb-6">
           <div className="flex items-center mb-2">
             <Title className="text-4xl text-blue-500 mr-3" />

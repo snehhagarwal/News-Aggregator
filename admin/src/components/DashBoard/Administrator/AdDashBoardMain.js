@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AdSideBar from './AdSideBar';
-import DashBoardHome from './../DashBoardHome';
+import AdministratorHomeDashBoard from './AdministratorHomeDashBoard';
 import AddNews from './../AddNews';
 import ApprovalNews from './ApprovalNews';
 
@@ -10,7 +10,7 @@ const AdDashBoardMain = () => {
   const renderPage = () => {
     switch (activePage) {
       case 'home':
-        return <DashBoardHome />;
+        return <AdministratorHomeDashBoard />;
       case 'addNews':
         return <AddNews />;
       case 'approveNews':

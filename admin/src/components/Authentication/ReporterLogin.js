@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-function AdministratorLogin() {
+function ReporterLogin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -26,7 +26,7 @@ function AdministratorLogin() {
       <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-lg">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white">
-            Login as Administrator
+            Login as Reporter
           </h2>
         </div>
 
@@ -79,5 +79,5 @@ function AdministratorLogin() {
     </div>
   );
 }
-export default AdministratorLogin;
+export default ReporterLogin;
   

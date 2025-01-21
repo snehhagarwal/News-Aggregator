@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReporterSideBar from "./ReporterSideBar";
-import DashBoardHome from "./../DashBoardHome";
+import ReporterHomeDashBoard from "./ReporterHomeDashBoard";
 import AddNews from "../AddNews";
 const ReporterDashBoardMain = () => {
   const [activePage, setActivePage] = useState('home');
@@ -8,7 +8,7 @@ const ReporterDashBoardMain = () => {
   const renderPage = () => {
     switch (activePage) {
       case 'home':
-        return <DashBoardHome />;
+        return <ReporterHomeDashBoard />;
       case 'addNews':
         return <AddNews />;
       default:
