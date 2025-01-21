@@ -7,6 +7,8 @@ import AdministratorLogin from "./components/Authentication/AdministratorLogin.j
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import ReporterLogin from "./components/Authentication/ReporterLogin.js";
+import NotFoundPage from "./components/Not_Found.js";
+
 function App() {
   return (
     <div>
@@ -44,6 +46,7 @@ function App() {
               </>
             }
           />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
