@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 const Home = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-gray-800 to-gray-700">
+            
             <motion.h1
                 className="text-4xl font-bold text-white mb-10"
                 initial={{ opacity: 0, y: -50 }}
@@ -34,6 +34,7 @@ const Home = () => {
                     <button className="mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">Login</button>
                 </motion.div>
             </div>
+            
         </div>
     );
 };

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import LoadingAnimation from "./Loader";
+import { IconButton } from "@mui/material";
+import { FavoriteBorder, ChatBubbleOutline, Share } from "@mui/icons-material";
 const NewsCard = ({ title, urlToImage, description, source, author, publishedAt }) => {
   const [loading, setLoading] = useState(true);
   const handleImageLoad = () => {
@@ -40,6 +42,17 @@ const NewsCard = ({ title, urlToImage, description, source, author, publishedAt 
           <p><strong className="text-blue-400">Author:</strong> {author || "Unknown author"}</p>
           <p><strong className="text-blue-400">Published At:</strong> {new Date(publishedAt).toLocaleDateString() || "Unknown date"}</p>
         </div>
+        <div className="flex justify-around mt-4 w-full">
+          <IconButton>
+            <FavoriteBorder sx={{ color: "white" }}/> 
+            </IconButton>
+            <IconButton >
+              <ChatBubbleOutline sx={{ color: "white" }} /> 
+              </IconButton>
+              <IconButton>
+                 <Share sx={{ color: "white" }} />
+                 </IconButton>
+</div>
       </div>
     </div>
   </Tilt>
