@@ -3,17 +3,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 const Home = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-gray-800 to-gray-700">
+        <div className="flex flex-col items-center  h-screen bg-gradient-to-b from-gray-800 to-gray-700">
             
             <motion.h1
-                className="text-4xl font-bold text-white mb-10"
+                className="text-5xl font-bold text-white mt-40 mb-24"
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
             >
                 Welcome to the Dashboard
             </motion.h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <motion.div
                     className="w-[20rem] h-[12rem] bg-gray-800 rounded-lg shadow-lg flex flex-col items-center justify-center hover:shadow-2xl transform transition-transform hover:scale-95 cursor-pointer"
                     initial={{ opacity: 0, scale: 0.8 }}
