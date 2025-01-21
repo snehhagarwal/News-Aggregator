@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/Administrator" element={<AdDashBoardMain/>}/>
         <Route path="/Reporter" element={<ReporterDashBoardMain/>}/>
-        <Route path="/Login" element={<AdministratorLogin/>}/>
+        <Route path="/AdministratorLogin" element={<AdministratorLogin/>}/>
         {/* <Route path="/SignUp" element={<Signup/>}/>  */}
       </Routes>
      </Router>
