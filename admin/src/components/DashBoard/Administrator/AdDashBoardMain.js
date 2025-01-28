@@ -3,10 +3,10 @@ import AdSideBar from './AdSideBar';
 import AdministratorHomeDashBoard from './AdministratorHomeDashBoard';
 import AddNews from './../AddNews';
 import ApprovalNews from './ApprovalNews';
+// import AddReporter from './AddReporterDetails';
 
 const AdDashBoardMain = () => {
   const [activePage, setActivePage] = useState('home');
-
   const renderPage = () => {
     switch (activePage) {
       case 'home':
@@ -15,6 +15,8 @@ const AdDashBoardMain = () => {
         return <AddNews />;
       case 'approveNews':
         return <ApprovalNews></ApprovalNews>
+        // case 'addreporter':
+        //   return <AddReporter/>
       default:
         return <div>Page Not Found</div>;
     }
