@@ -34,7 +34,7 @@ const Header = () => {
     "business",
     "entertainment",
     "general",
-    "health",
+    "health", 
     "science",
     "sports",
     "technology",
@@ -126,6 +126,16 @@ const Header = () => {
             </ul>
           )}
         </motion.div>
+        <Link to="/UserLogin">
+        <motion.button
+        
+        className="relative"
+        variants={buttonVariants}
+        whileHover="hover"
+        whileTap="tap">
+          LogIn
+        </motion.button>
+        </Link>
         <motion.button
       onClick={toggleTheme}
       className="text-white rounded-md transition duration-300 flex items-center justify-center"
