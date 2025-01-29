@@ -27,4 +27,15 @@
   .fade-out-scale {
     animation: fadeOutAndScale 1s ease-in forwards; /* Logo disappearing */
   }
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
   
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }

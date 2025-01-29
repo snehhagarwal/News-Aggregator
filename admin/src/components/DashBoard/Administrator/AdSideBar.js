@@ -47,12 +47,23 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('addNews')}
+            onClick={() => setActivePage('addNewsPhoto')}
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 150 }}
           >
             <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
-            Add News
+            Add News with Photos
+          </motion.li>
+          
+          <motion.li
+            className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
+            onClick={() => setActivePage('addNewsVid')}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >
+            <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
+            Add News with Videos
+
           </motion.li>
 
           <motion.li

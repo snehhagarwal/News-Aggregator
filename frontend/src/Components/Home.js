@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewsCard from "./NewsCard";
 import { motion } from "framer-motion";
 import data from "./DummyData";
-
+import { Announcement } from "@mui/icons-material";
 const Home = () => {
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,19 +33,38 @@ const Home = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  currentItems.map((items)=>{
+    console.log(items.title);
+  });
   return (
     <div className="flex flex-col items-center p-8 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700">
-     <div className="mb-6 w-screen flex justify-center">
-      
-  <input
-    type="text"
-    placeholder="Search news by title..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 shadow-sm shadow-slate-200 focus:outline-none focus:ring-2 focus:ring-white w-64"
-  />
-</div>
+    <div className="relative w-screen bg-gray-900 mb-4">
+      <div className="absolute top-0 left-0 w-full bg-gray-900 py-2 pl-3 z-10 flex items-center animate-pulse">
+        <Announcement className="text-white mr-3 text-3xl" />
+        <span className="text-white text-2xl font-bold">Breaking News</span>
+      </div>
+      <div className="w-full overflow-hidden bg-gray-900 mt-12 pt-2 pb-2">
+        <div className="whitespace-nowrap animate-marquee text-white text-lg">
+          {currentItems.map((newsItem, index) => (
+            <span key={index}>
+              {newsItem.title} &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+
+      <div className="mb-6 w-screen flex justify-center">
+        <input
+          type="text"
+          placeholder="Search news by title..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 shadow-sm shadow-slate-200 focus:outline-none focus:ring-2 focus:ring-white w-64"
+        />
+      </div>
+
       <div className="flex flex-wrap justify-center gap-6 mb-8">
         {currentItems.length > 0 ? (
           currentItems.map((newsItem, index) => (
