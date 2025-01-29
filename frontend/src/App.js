@@ -1,17 +1,28 @@
+import { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AnimatedComponent from "./Components/AnimatedComponent";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Headlines from "./Components/Headlines";
 import Countries from "./Components/Countries";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import ContatUs from "./Components/ContatUs";
 import AboutUs from "./Components/AboutUs";
 import NotFoundPage from "./Components/NotFoundPage";
-import UserLogin from './Components/User/Login'; 
-
-
+import ContactUs from "./Components/ContatUs";
+import { useNewsContext } from "./context";
+import { getNewsData } from "./API/newsData";
 function App() {
+  const { setNews } = useNewsContext();
+  useEffect(() => {
+    const fetchNewsData = async () => {
+        let res = await getNewsData();
+        console.log(res);
+        const out=res.data.news;
+        console.log(out.news);
+        setNews(out);
+    };
+    fetchNewsData();
+  }, []);
   return (
     <div className="App">
       <Router>
@@ -27,25 +38,36 @@ function App() {
               </>
             }
           />
-          <Route path="/Headlines/:headline" element={
-            <>
-            <Header />
-            <Headlines />
-            <Footer />
-          </>} />
-          <Route path="/aboutus" element={
-            <>
-            <Header />
-            <AboutUs />
-            <Footer />
-          </>} />
-          <Route path="/contactus" element={
-            <>
-            <Header />
-            <ContatUs />
-            <Footer />
-          </>} />
-          <Route path="/UserLogin" element={<UserLogin />} /> 
+          <Route
+            path="/Headlines/:headline"
+            element={
+              <>
+                <Header />
+                <Headlines />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/aboutus"
+            element={
+              <>
+                <Header />
+                <AboutUs />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/contactus"
+            element={
+              <>
+                <Header />
+                <ContactUs />
+                <Footer />
+              </>
+            }
+          />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>

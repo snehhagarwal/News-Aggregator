@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import NewsCard from "./NewsCard";
 import { motion } from "framer-motion";
 import data from "./DummyData";
-import { Announcement } from "@mui/icons-material";
+import { Announcement } from "@mui/icons-material"
+import { useNewsContext } from "../context";
+
 const Home = () => {
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const newsData = data.articles;
+  const {news}=useNewsContext();
+  const newsData= news.approvedNews;
 
+  console.log(newsData);
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
@@ -33,9 +37,10 @@ const Home = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-  currentItems.map((items)=>{
-    console.log(items.title);
-  });
+  // currentItems.map((items)=>{
+  //   console.log(items.title);
+  // });
+
   return (
     <div className="flex flex-col items-center p-8 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700">
     <div className="relative w-screen bg-gray-900 mb-4">

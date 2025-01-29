@@ -1,41 +1,41 @@
 /* styles.css */
 @keyframes fadeInAndScale {
-    0% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
   }
-  
-  @keyframes fadeOutAndScale {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .fade-in-scale {
-    animation: fadeInAndScale 1s ease-out forwards; /* Logo appearing */
+}
+
+@keyframes fadeOutAndScale {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
-  .fade-out-scale {
-    animation: fadeOutAndScale 1s ease-in forwards; /* Logo disappearing */
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
   }
-  @keyframes marquee {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+}
+
+.fade-in-scale {
+  animation: fadeInAndScale 1s ease-out forwards; /* Logo appearing */
+}
+.fade-out-scale {
+  animation: fadeOutAndScale 1s ease-in forwards; /* Logo disappearing */
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
   }
-  
-  .animate-marquee {
-    animation: marquee 35s linear infinite;
+  100% {
+    transform: translateX(-100%);
   }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
