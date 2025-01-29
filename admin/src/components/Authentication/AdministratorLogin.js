@@ -11,6 +11,7 @@ function AdministratorLogin() {
   const { setNews } = useAdminContext();
   const {news}=useAdminContext;
   const handleLogin = async () => {
+    console.log("Confirmation");
     try {
       const res = await loginAdmin({ name, password });
       if (res.status === 200) {

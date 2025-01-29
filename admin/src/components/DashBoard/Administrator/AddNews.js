@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { adminPostAdd } from "../../../API/AdministratorLogin";
 import axios from "axios";
-
+import { useAdminContext } from "../../Context/AdminContext";
 const AddNews = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
@@ -121,7 +121,7 @@ const AddNews = () => {
       alert("Failed to add news");
     }
   };
-
+  const { news } = useAdminContext();
   return (
     <div className="flex justify-center items-center bg-gray-900 w-full min-h-screen p-8">
       <motion.div

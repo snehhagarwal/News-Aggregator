@@ -9,10 +9,10 @@ import Footer from "./components/Footer.js";
 import ReporterLogin from "./components/Authentication/ReporterLogin.js";
 import NotFoundPage from "./components/NotFound.js";
 import AuthenticationMain from "./components/Authentication/AuthenticatonMain.js";
-
+import AdminContextProvider from "./components/Context/AdminContext.js";
 function App() {
   return (
-    <div>
+    <AdminContextProvider>
       <Router>
         <Routes>
           <Route
@@ -60,7 +60,7 @@ function App() {
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
-    </div>
+      </AdminContextProvider>
   );
 }
 
