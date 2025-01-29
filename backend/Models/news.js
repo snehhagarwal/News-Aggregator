@@ -70,6 +70,10 @@ const administratorSchema = new mongoose.Schema({
 });
 
 const newsSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        default:"news",
+    },
     administrator: { 
         type: [administratorSchema], 
         default: [] 
@@ -78,6 +82,14 @@ const newsSchema = new mongoose.Schema({
         type: [reporterSchema], 
         default: [] 
     },
+    reporters: { 
+        type: [reporterSchema], 
+        default: [] 
+    },
+    approvedNews:{
+        type:[Object],
+        default:[],
+    }
 });
 const News = mongoose.model("News", newsSchema);
 export default News;

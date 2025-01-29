@@ -10,11 +10,16 @@ export const loginAdmin = async (req, res) => {
             return res.status(404).json({ message: "Admin not found" });
         }
         const admin = news.administrator.find((admin) => admin.id === name);
-
         if (admin.password !== password) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
-        res.status(200).json({ message: "Login successful", admin });
+        const out=[];
+        out.push(admin.approvedNews);
+        out.push(admin.approvedNewsVid);
+        out.push(admin.nonApprovedNews);
+        out.push(admin.nonApprovedNewsVid);
+        out.push(admin.reporters);
+        res.status(200).json({ message: "Login successful", out });
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
@@ -22,23 +27,22 @@ export const loginAdmin = async (req, res) => {
 export const adminPostAdd = async (req, res) => {
     try {
       const { id,author, title, country, tags, categories, date, time, description, images } = req.body;
-    //   console.log(images);
       if (!id || !author|| !title || !country || !description) {
         return res.status(400).json({ message: "Admin ID, title, country, and description are required fields." });
       }
       if (!Array.isArray(tags) || !Array.isArray(categories) || (images && !Array.isArray(images))) {
         return res.status(400).json({ message: "Tags, categories, and images should be arrays." });
       }
+      const out=await News.findOne({"name":"news"});
+    //   console.log(out.reporters);
       const news = await News.findOne({ "administrator.id": id });
       if (!news) {
         return res.status(404).json({ message: "Admin not found" });
       }
-  
       const admin = news.administrator.find((admin) => admin.id === id);
       if (!admin) {
         return res.status(404).json({ message: "Admin not found in the record" });
       }
-  
       const newsData = {
         author,
         title,
@@ -50,9 +54,11 @@ export const adminPostAdd = async (req, res) => {
         description,
         images: images || [],
       };
-  
       admin.approvedNews.push(newsData);
+      out.approvedNews.push(newsData);   
+    console.log(out.approvedNews);
       await news.save();
+      await out.save();
       res.status(201).json({ message: "News added successfully!", data: newsData });
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error", error: error.message });
