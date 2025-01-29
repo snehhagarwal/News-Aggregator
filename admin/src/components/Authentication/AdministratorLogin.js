@@ -1,38 +1,44 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "./../../API/AdministratorLogin";
+import { loginAdmin } from "../../API/AdministratorLogin";
+import { useAdminContext } from "../Context/AdminContext";
 
 function AdministratorLogin() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const { setNews } = useAdminContext();
+  const {news}=useAdminContext;
   const handleLogin = async () => {
     try {
-      const res = await loginAdmin({ name: name, password: password });
+      const res = await loginAdmin({ name, password });
       if (res.status === 200) {
+        const out=res.data.out;
+        setNews(out);
+        // console.log(news);
         navigate(`/Administrator/${name}`);
       } else {
         setError(res.data.message || "An error occurred during login.");
       }
     } catch (err) {
-      if (err.response && err.response.status === 400) {
+      if (err.response?.status === 400) {
         setError("Invalid input. Please check your credentials.");
-      } else if (err.response && err.response.status === 401) {
+      } else if (err.response?.status === 401) {
         setError("Unauthorized. Incorrect username or password.");
       } else {
         setError("An unexpected error occurred. Please try again later.");
       }
     }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
       <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-2xl p-8 transform hover:scale-105 transition-transform duration-300 ease-in-out">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-white">Admin Login</h2>
-          <p className="mt-2 text-gray-400">Welcome back! Please login to your account.</p>
+          <p className="mt-2 text-gray-400">
+            Welcome back! Please login to your account.
+          </p>
         </div>
         <div className="mt-8 space-y-6">
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
