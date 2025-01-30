@@ -27,8 +27,8 @@ const NewsCard = ({ author, title, description, date, images }) => {
       className="w-full flex justify-center"
     >
       <Tilt options={{ max: 8, scale: 1.01, speed: 400 }} className="tilt-card">
-        <div className="relative flex flex-col bg-opacity-80 bg-gray-900 backdrop-blur-md border border-gray-700 rounded-2xl shadow-lg shadow-gray-900 overflow-hidden w-80 h-[32rem] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-          <div className="w-full h-52 bg-gray-800 relative">
+        <div className="relative flex flex-col bg-opacity-80 bg-gray-900 backdrop-blur-md border border-gray-700 rounded-2xl shadow-lg shadow-gray-900 overflow-hidden w-72 h-[26rem] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+          <div className="w-full h-48  bg-gray-800 relative">
             {loading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <LoadingAnimation />

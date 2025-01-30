@@ -1,9 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
-// Create the News Context
 const NewsContext = createContext(null);
-
-// Custom hook to access the context
 export const useNewsContext = () => {
   const context = useContext(NewsContext);
   if (!context) {
@@ -11,11 +7,8 @@ export const useNewsContext = () => {
   }
   return context;
 };
-
-// Provider component that wraps your app and provides state
 export const NewsProvider = ({ children }) => {
-  const [news, setNews] = useState(null); // Changed SetNews to setNews for consistency
-
+  const [news, setNews] = useState(null);
   return (
     <NewsContext.Provider value={{ news, setNews }}>
       {children}

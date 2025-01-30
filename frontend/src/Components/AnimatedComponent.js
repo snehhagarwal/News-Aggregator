@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import vid from "../Assets/vid1.mp4";
-import Header from "./Header";
+// import Header from "./Header";
 import Footer from "./Footer";
 const AnimatedComponent = () => {
   const [visible, setVisible] = useState(true);
@@ -30,7 +30,7 @@ const AnimatedComponent = () => {
         )}
       {showHome && (
         <div className="transition-opacity duration-1000 opacity-100 fade-in-scale w-full h-full">
-          <Header></Header>
+          
           <Home />
           <Footer></Footer>
         </div>

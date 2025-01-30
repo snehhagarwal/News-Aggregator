@@ -13,16 +13,15 @@ import { useNewsContext } from "./context";
 import { getNewsData } from "./API/newsData";
 function App() {
   const { setNews } = useNewsContext();
+
   useEffect(() => {
     const fetchNewsData = async () => {
-        let res = await getNewsData();
-        console.log(res);
-        const out=res.data.news;
-        console.log(out.news);
-        setNews(out);
+      let res = await getNewsData();
+      const out = res.data.news;
+      setNews(out);
     };
     fetchNewsData();
-  }, []);
+  }, [setNews]);
   return (
     <div className="App">
       <Router>

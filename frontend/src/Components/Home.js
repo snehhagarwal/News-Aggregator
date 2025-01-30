@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import NewsCard from "./NewsCard";
-import { motion } from "framer-motion";
 import { Announcement } from "@mui/icons-material";
 import { useNewsContext } from "../context";
-
+import Header from "./Header";
+import { useAppContext } from "../Context/ThemeContext";
 const Home = () => {
   const itemsPerPage = 8;
+  const { darkMode, toggleTheme, searchQuery, updateSearchQuery } = useAppContext(); 
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
   const { news } = useNewsContext();
   const newsData = news.approvedNews;
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -31,74 +35,74 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 pt-0 min-h-screen w-full bg-gradient-to-t from-gray-900 to-gray-700 ">
-      {/* <div className="relative w-screen bg-gray-900 shadow-lg rounded-lg mb-6 p-4 pb-0 pl-0 pr-0 z-10"> */}
-      <div className="relative w-screen bg-gray-900 shadow-lg rounded-lg mb-6 p-4 pb-0 pl-0 pr-0 z-10">
+    <div className={`w-screen ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className="flex flex-col items-center p-6 pt-0 min-h-screen mr-16 ml-16">
+        <Header toggleTheme={toggleTheme} darkMode={darkMode} />
+        <div className="relative w-full bg-gray-900/80 shadow-xl rounded-2xl mb-16 p-4 pr-6 flex flex-col overflow-hidden border border-gray-800 backdrop-blur-lg">
+          <div className="flex items-center gap-3 text-white text-xl font-bold">
+            <Announcement className="text-blue-400 text-3xl animate-bounce ml-4" />
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-200 text-transparent bg-clip-text">
+              Breaking News
+            </span>
+          </div>
 
-        <div className="flex items-center gap-3 text-white text-lg font-semibold z-10">
-          <Announcement className="text-yellow-400 text-3xl animate-bounce" />
-          <span>Breaking News</span>
-        </div>
-        <div className="overflow-hidden bg-gray-800 text-white mt-2 p-2 rounded-md">
-          <div className="whitespace-nowrap animate-marquee text-lg">
-            {currentItems.map((newsItem, index) => (
-              <span key={index} className="mr-6">
-                {newsItem.title} |
-              </span>
-            ))}
+          <div className="relative w-full overflow-hidden rounded-full mt-2 border border-gray-700 bg-gray-800/50">
+            <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-800 via-transparent" />
+            <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-800 via-transparent" />
+
+            <div className="whitespace-nowrap animate-marquee px-4 text-lg font-medium text-gray-200 flex">
+              {currentItems.map((newsItem, index) => (
+                <span key={index} className="inline-block mr-2 ml-2">
+                  {newsItem.title} &nbsp;&nbsp; <span className="text-blue-600">|</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="mb-6 w-full flex justify-end pr-14 ">
-        <input
-          type="text"
-          placeholder="Search news..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="input input-bordered input-primary w-80 text-white placeholder-gray-400 bg-gray-800"
-        />
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-14">
-        {currentItems.length > 0 ? (
-          currentItems.map((newsItem, index) => (
-            <NewsCard key={index} {...newsItem} />
-          ))
-        ) : (
-          <p className="text-white text-lg col-span-full text-center">
-            No results found.
-          </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-14">
+          {currentItems.length > 0 ? (
+            currentItems.map((newsItem, index) => (
+              <NewsCard key={index} {...newsItem} />
+            ))
+          ) : (
+            <p className="text-white text-lg col-span-full text-center">
+              No results found.
+            </p>
+          )}
+        </div>
+
+        {totalPages > 1 && currentItems.length > 0 && (
+          <div className="join flex justify-center items-center gap-2 mt-4">
+            <button
+              className="join-item btn bg-blue-500 text-white hover:bg-blue-600"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              «
+            </button>
+            {[1, 2, "...", totalPages - 1, totalPages].map((page, index) => (
+              <button
+                key={index}
+                className={`join-item btn ${
+                  currentPage === page ? "btn-primary bg-blue-600" : "bg-gray-700"
+                } text-white hover:bg-blue-500`}
+                onClick={() => typeof page === "number" && handlePageChange(page)}
+                disabled={page === "..." }
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              className="join-item btn bg-blue-500 text-white hover:bg-blue-600"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              »
+            </button>
+          </div>
         )}
       </div>
-
-      {/* Pagination Controls */}
-      {totalPages > 1 && currentItems.length > 0 && (
-        <div className="join flex justify-center items-center gap-2 mt-4">
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            «
-          </button>
-          {[1, 2, "...", totalPages - 1, totalPages].map((page, index) => (
-            <button
-              key={index}
-              className={`join-item btn ${currentPage === page ? "btn-primary" : ""}`}
-              onClick={() => typeof page === "number" && handlePageChange(page)}
-              disabled={page === "..."}
-            >
-              {page}
-            </button>
-          ))}
-          <button
-            className="join-item btn"
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            »
-          </button>
-        </div>
-      )}
     </div>
   );
 };
