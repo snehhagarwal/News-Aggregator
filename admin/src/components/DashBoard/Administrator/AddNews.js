@@ -51,13 +51,12 @@ const AddNews = () => {
         const cloudinaryFormData = new FormData();
         cloudinaryFormData.append("file", file);
         cloudinaryFormData.append("upload_preset", "ml_default");
-
         const cloudinaryResponse = await axios.post(
           "https://api.cloudinary.com/v1_1/dthriaot4/image/upload",
           cloudinaryFormData
         );
-
         uploadedImages.push(cloudinaryResponse.data.secure_url);
+        console.log(uploadedImages);
       }
 
       setFormData((prevFormData) => ({

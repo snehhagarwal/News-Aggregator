@@ -5,9 +5,9 @@ import LoadingAnimation from "./Loader";
 import { IconButton } from "@mui/material";
 import { Favorite, FavoriteBorder, ChatBubbleOutline, Share } from "@mui/icons-material";
 
-const NewsCard = ({ title, urlToImage, description, source, author, publishedAt }) => {
+const NewsCard = ({ author,title,description,date,images}) => {
   const [loading, setLoading] = useState(true);
-  const [liked, setLiked] = useState(false); // State to track like status
+  const [liked, setLiked] = useState(false);
 
   const handleImageLoad = () => {
     setLoading(false);
@@ -24,7 +24,7 @@ const NewsCard = ({ title, urlToImage, description, source, author, publishedAt 
   const shortDescription =
     (description?.length > 100 ? description.slice(0, 100) + "..." : description) || "No description available.";
   const shortTitle = (title?.length > 30 ? title.slice(0, 30) + "..." : title) || "Untitled";
-
+  const urlToImage=images[0];
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -40,22 +40,22 @@ const NewsCard = ({ title, urlToImage, description, source, author, publishedAt 
             <img
               src={urlToImage}
               alt=""
-              className="w-full h-36 object-cover rounded-lg mb-4"
+              className="w-60 h-60 object-cover rounded-lg mb-4"
               onLoad={handleImageLoad}
               onError={handleError}
               style={{ display: loading ? "none" : "block" }}
             />
             <p className="text-sm text-gray-300 mb-3 text-center">{shortDescription}</p>
             <div className="text-xs text-gray-400 text-center">
-              <p>
+              {/* <p>
                 <strong className="text-blue-400">Source:</strong> {source?.name || source || "Unknown source"}
-              </p>
+              </p> */}
               <p>
                 <strong className="text-blue-400">Author:</strong> {author || "Unknown author"}
               </p>
               <p>
                 <strong className="text-blue-400">Published At:</strong>{" "}
-                {new Date(publishedAt).toLocaleDateString() || "Unknown date"}
+                {new Date(date).toLocaleDateString() || "Unknown date"}
               </p>
             </div>
             <div className="flex justify-around mt-8 w-full">
