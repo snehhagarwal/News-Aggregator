@@ -4,12 +4,14 @@ import { Announcement } from "@mui/icons-material";
 import { useNewsContext } from "../context";
 import Header from "./Header";
 import { useAppContext } from "../Context/ThemeContext";
+
 const Home = () => {
   const itemsPerPage = 8;
-  const { darkMode, toggleTheme, searchQuery, updateSearchQuery } = useAppContext(); 
+  const { darkMode, toggleTheme, searchQuery } = useAppContext(); 
   const [currentPage, setCurrentPage] = useState(1);
   const { news } = useNewsContext();
   const newsData = news.approvedNews;
+  
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     localStorage.setItem("darkMode", darkMode);
@@ -35,22 +37,22 @@ const Home = () => {
   };
 
   return (
-    <div className={`w-screen ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <div className={`w-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
       <div className="flex flex-col items-center p-6 pt-0 min-h-screen mr-16 ml-16">
         <Header toggleTheme={toggleTheme} darkMode={darkMode} />
-        <div className="relative w-full bg-gray-900/80 shadow-xl rounded-2xl mb-16 p-4 pr-6 flex flex-col overflow-hidden border border-gray-800 backdrop-blur-lg">
-          <div className="flex items-center gap-3 text-white text-xl font-bold">
+        <div className="relative w-full bg-blue-50 shadow-xl rounded-2xl mb-16 p-4 pr-6 flex flex-col overflow-hidden border border-blue-200 backdrop-blur-lg">
+          <div className="flex items-center gap-3 text-blue-600 text-xl font-bold">
             <Announcement className="text-blue-400 text-3xl animate-bounce ml-4" />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-200 text-transparent bg-clip-text">
               Breaking News
             </span>
           </div>
 
-          <div className="relative w-full overflow-hidden rounded-full mt-2 border border-gray-700 bg-gray-800/50">
-            <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-800 via-transparent" />
-            <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-800 via-transparent" />
+          <div className="relative w-full overflow-hidden rounded-full mt-2 border border-blue-300 bg-blue-50/60">
+            <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-blue-100 via-transparent" />
+            <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-blue-100 via-transparent" />
 
-            <div className="whitespace-nowrap animate-marquee px-4 text-lg font-medium text-gray-200 flex">
+            <div className="whitespace-nowrap animate-marquee px-4 text-lg font-medium text-blue-700 flex">
               {currentItems.map((newsItem, index) => (
                 <span key={index} className="inline-block mr-2 ml-2">
                   {newsItem.title} &nbsp;&nbsp; <span className="text-blue-600">|</span>
@@ -66,7 +68,7 @@ const Home = () => {
               <NewsCard key={index} {...newsItem} />
             ))
           ) : (
-            <p className="text-white text-lg col-span-full text-center">
+            <p className="text-black text-lg col-span-full text-center">
               No results found.
             </p>
           )}
@@ -85,7 +87,7 @@ const Home = () => {
               <button
                 key={index}
                 className={`join-item btn ${
-                  currentPage === page ? "btn-primary bg-blue-600" : "bg-gray-700"
+                  currentPage === page ? "btn-primary bg-blue-600" : "bg-blue-300"
                 } text-white hover:bg-blue-500`}
                 onClick={() => typeof page === "number" && handlePageChange(page)}
                 disabled={page === "..." }

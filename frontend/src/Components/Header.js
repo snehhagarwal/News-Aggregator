@@ -38,7 +38,7 @@ const Header = () => {
           placeholder="Search news..."
           value={searchQuery}
           onChange={(e) => updateSearchQuery(e.target.value)}
-          className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-black'} w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-inner`}
+          className={`${darkMode ? 'bg-gray-700 text-white' : 'bg-slate-300 text-black'} w-full px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-inner`}
         />
       </div>
 

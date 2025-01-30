@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import LoadingAnimation from "./Loader";
 import { Favorite, FavoriteBorder, Share, ChatBubbleOutline } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import { useAppContext } from "../Context/ThemeContext"; // Assuming darkMode state is in this context
 
 const NewsCard = ({ author, title, description, date, images }) => {
+  const { darkMode } = useAppContext(); // Access darkMode from context
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
 
@@ -27,8 +29,14 @@ const NewsCard = ({ author, title, description, date, images }) => {
       className="w-full flex justify-center"
     >
       <Tilt options={{ max: 8, scale: 1.01, speed: 400 }} className="tilt-card">
-        <div className="relative flex flex-col bg-opacity-80 bg-gray-900 backdrop-blur-md border border-gray-700 rounded-2xl shadow-lg shadow-gray-900 overflow-hidden w-72 h-[26rem] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-          <div className="w-full h-48  bg-gray-800 relative">
+        <div
+          className={`relative flex flex-col ${
+            darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+          } bg-opacity-80 backdrop-blur-md border ${darkMode ? "border-gray-700" : "border-gray-200"} rounded-2xl shadow-lg ${
+            darkMode ? "shadow-gray-800" : "shadow-gray-200"
+          } overflow-hidden w-72 h-[26rem] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl`}
+        >
+          <div className="w-full h-48 bg-gray-300 relative">
             {loading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <LoadingAnimation />
@@ -44,31 +52,38 @@ const NewsCard = ({ author, title, description, date, images }) => {
             />
           </div>
 
-          {/* Content Section */}
           <div className="p-4 flex flex-col justify-between flex-grow">
-            <h3 className="text-lg font-bold text-white text-center mb-3">{shortTitle}</h3>
-            <p className="text-sm text-gray-400 text-center">{shortDescription}</p>
+            <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-black"} text-center mb-3`}>
+              {shortTitle}
+            </h3>
+            <p className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"} text-center`}>
+              {shortDescription}
+            </p>
 
-            <div className="text-xs text-gray-400 text-center mt-3">
-              <p>
-                <strong className="text-blue-400">Author:</strong> {author || "Unknown"}
+            <div className="text-xs text-center mt-3">
+              <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                <strong className={`${darkMode ? "text-blue-400" : "text-blue-600"}`}>Author:</strong>{" "}
+                {author || "Unknown"}
               </p>
-              <p>
-                <strong className="text-blue-400">Published:</strong>{" "}
+              <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                <strong className={`${darkMode ? "text-blue-400" : "text-blue-600"}`}>Published:</strong>{" "}
                 {new Date(date).toLocaleDateString() || "Unknown"}
               </p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex justify-around mt-4 border-t border-gray-700 pt-3">
+            <div className="flex justify-around mt-4 border-t pt-3">
               <IconButton onClick={toggleLike}>
-                {liked ? <Favorite sx={{ color: "red" }} /> : <FavoriteBorder sx={{ color: "white" }} />}
+                {liked ? (
+                  <Favorite sx={{ color: darkMode ? "red" : "red" }} />
+                ) : (
+                  <FavoriteBorder sx={{ color: darkMode ? "white" : "black" }} />
+                )}
               </IconButton>
               <IconButton>
-                <ChatBubbleOutline sx={{ color: "white" }} />
+                <ChatBubbleOutline sx={{ color: darkMode ? "white" : "black" }} />
               </IconButton>
               <IconButton>
-                <Share sx={{ color: "white" }} />
+                <Share sx={{ color: darkMode ? "white" : "black" }} />
               </IconButton>
             </div>
           </div>
