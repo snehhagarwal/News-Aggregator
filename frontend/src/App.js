@@ -11,6 +11,8 @@ import NotFoundPage from "./Components/NotFoundPage";
 import ContactUs from "./Components/ContatUs";
 import { useNewsContext } from "./context";
 import { getNewsData } from "./API/newsData";
+import UserLogin from "./Components/User/Login";
+
 function App() {
   const { setNews } = useNewsContext();
 
@@ -67,7 +69,9 @@ function App() {
               </>
             }
           />
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route
+           path="/*" element={<NotFoundPage />} />
+                     <Route path="/UserLogin" element={<UserLogin />} />
         </Routes>
       </Router>
     </div>
