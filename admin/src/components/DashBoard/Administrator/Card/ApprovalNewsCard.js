@@ -1,5 +1,5 @@
-import React from 'react';
-import { CheckCircle, Cancel } from '@mui/icons-material';
+import React from "react";
+import { CheckCircle, Cancel } from "@mui/icons-material";
 const ApprovalNewsCard = ({ news, onApprove, onReject }) => {
   return (
     <div className="w-96 bg-gray-800 text-white rounded-lg shadow-lg p-8 flex flex-col justify-between">

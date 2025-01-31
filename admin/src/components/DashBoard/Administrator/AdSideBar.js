@@ -1,18 +1,18 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Home, LiveTv, Report } from '@mui/icons-material';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
+import React from "react";
+import { motion } from "framer-motion";
+import { Home, LiveTv, Report } from "@mui/icons-material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 
 const AdSideBar = ({ setActivePage }) => {
   return (
     <motion.div
       className="bg-gray-900 h-screen border-r border-gray-700 shadow-lg"
-      initial={{ x: '-100%' }}
+      initial={{ x: "-100%" }}
       animate={{ x: 0 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 25 }}
+      transition={{ type: "spring", stiffness: 100, damping: 25 }}
     >
       <div className="text-white p-6">
         <motion.h1
@@ -27,9 +27,9 @@ const AdSideBar = ({ setActivePage }) => {
         <ul className="mt-6 space-y-4">
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('home')}
+            onClick={() => setActivePage("home")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <Home className="mr-3 text-cyan-400" />
             Home
@@ -37,9 +37,9 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('liveFeed')}
+            onClick={() => setActivePage("liveFeed")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <LiveTv className="mr-3 text-teal-400" />
             Live Feed
@@ -47,30 +47,29 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('addNewsPhoto')}
+            onClick={() => setActivePage("addNewsPhoto")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
             Add News with Photos
           </motion.li>
-          
+
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('addNewsVid')}
+            onClick={() => setActivePage("addNewsVid")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
             Add News with Videos
-
           </motion.li>
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('approveNews')}
+            onClick={() => setActivePage("approveNews")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <AddTaskIcon className="mr-3 text-amber-500" />
             Approve News
@@ -78,9 +77,9 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('addReporter')}
+            onClick={() => setActivePage("addReporter")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <HowToRegIcon className="mr-3 text-green-400" />
             Add Reporter
@@ -88,9 +87,9 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => setActivePage('reports')}
+            onClick={() => setActivePage("reports")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <Report className="mr-3 text-red-500" />
             Reports
@@ -98,9 +97,9 @@ const AdSideBar = ({ setActivePage }) => {
 
           <motion.li
             className="flex items-center text-lg hover:bg-gray-800 p-4 rounded-lg cursor-pointer transition-all duration-300"
-            onClick={() => alert('Logout action!')}
+            onClick={() => alert("Logout action!")}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <LogoutIcon className="mr-3 text-purple-500" />
             Logout

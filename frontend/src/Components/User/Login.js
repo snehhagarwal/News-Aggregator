@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { loginUser } from "./../API/user";
 function UserLogin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -8,38 +8,39 @@ function UserLogin() {
     password: "",
   });
   const [error, setError] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const handleSubmit = async () => {
+    setError("");
+    setLoading(true);
     try {
-      if (formData.email && formData.password) {
-        navigate("/dashboard"); 
+      const res = await loginUser(formData);
+      console.log(formData);
+      if (res.status === 200) {
+        navigate("/dashboard");
       } else {
-        throw new Error("Invalid credentials");
+        setError("Invalid email or password");
       }
     } catch (err) {
-      setError("Invalid credentials");
+      setError("Server error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
       <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-2xl p-8 transform hover:scale-105 transition-transform duration-300 ease-in-out">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-white">User Login</h2>
-          <p className="mt-2 text-gray-400">Welcome back! Please login to your account.</p>
+          <p className="mt-2 text-gray-400">Welcome back! Please log in.</p>
         </div>
-
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+        <div className="mt-8 space-y-6">
           {error && (
             <div className="text-red-500 text-sm text-center">{error}</div>
           )}
-
           <div className="space-y-4">
             <div>
               <label className="text-gray-300 block mb-2">Email</label>
               <input
-                id="email"
                 type="email"
                 required
                 className="w-full mt-1 p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -50,13 +51,9 @@ function UserLogin() {
                 }
               />
             </div>
-
             <div>
-              <label htmlFor="password" className="text-gray-300 block mb-2">
-                Password
-              </label>
+              <label className="text-gray-300 block mb-2">Password</label>
               <input
-                id="password"
                 type="password"
                 required
                 className="w-full mt-1 p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -68,14 +65,14 @@ function UserLogin() {
               />
             </div>
           </div>
-
           <button
-            type="submit"
+            type="button"
             className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200 ease-in-out transform hover:scale-105"
+            disabled={loading}
+            onClick={handleSubmit}
           >
-            Sign in
+            {loading ? "Signing in..." : "Sign in"}
           </button>
-
           <div className="mt-4 text-center">
             <p className="text-gray-400 text-sm">
               Forgot your password?{" "}
@@ -84,7 +81,7 @@ function UserLogin() {
               </span>
             </p>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ function App() {
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
-      </AdminContextProvider>
+    </AdminContextProvider>
   );
 }
 

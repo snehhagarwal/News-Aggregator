@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {loginReporter} from './../../API/ReporterLogin';
+import { loginReporter } from "./../../API/ReporterLogin";
 function ReporterLogin() {
   const [name, setname] = useState("");
   const [password, setPassword] = useState("");
- const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -31,13 +31,10 @@ function ReporterLogin() {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-lg">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white">
-            Login as Reporter
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Login as Reporter</h2>
         </div>
 
-       
-        <div  className="mt-8 space-y-6">
+        <div className="mt-8 space-y-6">
           <div className="space-y-4">
             <div>
               <label className="text-gray-300 block mb-2">Username</label>
@@ -90,4 +87,3 @@ function ReporterLogin() {
   );
 }
 export default ReporterLogin;
-  

@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import LoadingAnimation from "./Loader";
 import { Favorite, FavoriteBorder, Share, ChatBubbleOutline } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { useAppContext } from "../Context/ThemeContext"; // Assuming darkMode state is in this context
+import { useAppContext } from "../Context/ThemeContext";
 
 const NewsCard = ({ author, title, description, date, images }) => {
-  const { darkMode } = useAppContext(); // Access darkMode from context
+  const { darkMode } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
 
@@ -26,7 +26,7 @@ const NewsCard = ({ author, title, description, date, images }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
-      className="w-full flex justify-center"
+      className="w-full flex justify-center cursor-pointer  "
     >
       <Tilt options={{ max: 8, scale: 1.01, speed: 400 }} className="tilt-card">
         <div

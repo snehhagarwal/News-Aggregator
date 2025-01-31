@@ -10,6 +10,7 @@ const Home = () => {
   const { darkMode, toggleTheme, searchQuery } = useAppContext(); 
   const [currentPage, setCurrentPage] = useState(1);
   const { news } = useNewsContext();
+  console.log(news);
   const newsData = news.approvedNews;
   
   useEffect(() => {
@@ -65,7 +66,7 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-14">
           {currentItems.length > 0 ? (
             currentItems.map((newsItem, index) => (
-              <NewsCard key={index} {...newsItem} />
+              <NewsCard key={index} {...newsItem}  />
             ))
           ) : (
             <p className="text-black text-lg col-span-full text-center">

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Newspaper, Title, Description, Language, Tag } from "@mui/icons-material";
+import {
+  Newspaper,
+  Title,
+  Description,
+  Language,
+  Tag,
+} from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { adminPostAdd } from "../../../API/AdministratorLogin";
@@ -21,7 +27,14 @@ const AddNews = () => {
   });
 
   const categories = [
-    "business", "entertainment", "general", "health", "science", "sports", "technology", "politics"
+    "business",
+    "entertainment",
+    "general",
+    "health",
+    "science",
+    "sports",
+    "technology",
+    "politics",
   ];
 
   const handleCategoryChange = (e) => {
@@ -129,13 +142,17 @@ const AddNews = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-3xl text-blue-500 font-semibold text-center mb-6">Add News Article</h2>
+        <h2 className="text-3xl text-blue-500 font-semibold text-center mb-6">
+          Add News Article
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-6">
             <div>
               <div className="flex items-center mb-2">
                 <Title className="text-4xl text-blue-500 mr-3" />
-                <label htmlFor="author" className="text-lg text-white">Author</label>
+                <label htmlFor="author" className="text-lg text-white">
+                  Author
+                </label>
               </div>
               <input
                 type="text"
@@ -150,7 +167,9 @@ const AddNews = () => {
             <div>
               <div className="flex items-center mb-2">
                 <Title className="text-4xl text-blue-500 mr-3" />
-                <label htmlFor="title" className="text-lg text-white">Title</label>
+                <label htmlFor="title" className="text-lg text-white">
+                  Title
+                </label>
               </div>
               <input
                 type="text"
@@ -165,7 +184,9 @@ const AddNews = () => {
             <div>
               <div className="flex items-center mb-2">
                 <Language className="text-4xl text-purple-400 mr-3" />
-                <label htmlFor="country" className="text-lg text-white">Country</label>
+                <label htmlFor="country" className="text-lg text-white">
+                  Country
+                </label>
               </div>
               <input
                 type="text"
@@ -233,7 +254,9 @@ const AddNews = () => {
             <div>
               <div className="flex items-center mb-2">
                 <Description className="text-4xl text-green-500 mr-3" />
-                <label htmlFor="description" className="text-lg text-white">Description</label>
+                <label htmlFor="description" className="text-lg text-white">
+                  Description
+                </label>
               </div>
               <textarea
                 id="description"
@@ -267,7 +290,12 @@ const AddNews = () => {
                   multiple
                   className="hidden"
                 />
-                <label htmlFor="imageFile" className="text-blue-400 cursor-pointer">Choose a File</label>
+                <label
+                  htmlFor="imageFile"
+                  className="text-blue-400 cursor-pointer"
+                >
+                  Choose a File
+                </label>
               </div>
               {formData.images.length > 0 && (
                 <div className="mt-4 grid grid-cols-2 gap-4">

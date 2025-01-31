@@ -1,10 +1,8 @@
 import axios from "axios";
-const URL = "http://localhost:8000"; 
+const URL = "http://localhost:8000";
 export const loginAdmin = async (data) => {
   try {
-    // console.log(data);
     let res = await axios.post(`${URL}/loginAdmin`, data);
-    // console.log(data);
     return res;
   } catch (error) {
     return error;
@@ -53,7 +51,3 @@ export const approveNewsVid = async (data) => {
     return error;
   }
 };
-
-
-
-

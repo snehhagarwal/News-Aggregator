@@ -97,10 +97,10 @@ const AddNewsVid = () => {
     };
 
     try {
-     const response = await adminVidPostAdd(dataToSubmit);
-           if (response.data) {
-             alert("News added successfully!");
-           }
+      const response = await adminVidPostAdd(dataToSubmit);
+      if (response.data) {
+        alert("News added successfully!");
+      }
     } catch (error) {
       console.error("Error submitting news video:", error);
       alert("Failed to add news video");
@@ -120,7 +120,6 @@ const AddNewsVid = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-6">
-            
             <div>
               <div className="flex items-center mb-2">
                 <Title className="text-4xl text-blue-500 mr-3" />
@@ -221,7 +220,6 @@ const AddNewsVid = () => {
                 ))}
               </div>
             </div>
-
           </div>
 
           <div className="space-y-6">

@@ -9,13 +9,13 @@ function AdministratorLogin() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setNews } = useAdminContext();
-  const {news}=useAdminContext;
+  const { news } = useAdminContext;
   const handleLogin = async () => {
     console.log("Confirmation");
     try {
       const res = await loginAdmin({ name, password });
       if (res.status === 200) {
-        const out=res.data.out;
+        const out = res.data.out;
         setNews(out);
         // console.log(news);
         navigate(`/Administrator/${name}`);

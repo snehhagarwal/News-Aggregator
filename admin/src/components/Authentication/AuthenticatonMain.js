@@ -5,7 +5,7 @@ const AuthenticationMain = () => {
   const [isAdmin, setIsAdmin] = useState(true);
 
   const handleToggle = () => {
-    setIsAdmin(!isAdmin); 
+    setIsAdmin(!isAdmin);
   };
 
   return (

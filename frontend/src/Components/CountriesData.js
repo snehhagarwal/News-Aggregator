@@ -4,7 +4,7 @@ let countryCodes = [
     "mx", "my", "ng", "nl", "no", "nz", "ph", "pl", "pt", "ro", "rs",
     "ru", "sa", "se", "sg", "si", "sk", "th", "tr", "tw", "ua", "us", "ve", "za"
 ];
-var isoCountryMap = {
+export const isoCountryMap = {
     'AF' : 'Afghanistan',
     'AX' : 'Aland Islands',
     'AL' : 'Albania',
