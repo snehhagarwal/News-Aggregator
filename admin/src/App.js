@@ -7,11 +7,12 @@ import AdministratorLogin from "./components/Authentication/AdministratorLogin.j
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import ReporterLogin from "./components/Authentication/ReporterLogin.js";
-import NotFoundPage from "./components/Not_Found.js";
-
+import NotFoundPage from "./components/NotFound.js";
+import AuthenticationMain from "./components/Authentication/AuthenticatonMain.js";
+import AdminContextProvider from "./components/Context/AdminContext.js";
 function App() {
   return (
-    <div>
+    <AdminContextProvider>
       <Router>
         <Routes>
           <Route
@@ -24,8 +25,8 @@ function App() {
               </>
             }
           />
-          <Route path="/Administrator" element={<AdDashBoardMain />} />
-          <Route path="/Reporter" element={<ReporterDashBoardMain />} />
+          <Route path="/Administrator/:id" element={<AdDashBoardMain />} />
+          <Route path="/Reporter/:id" element={<ReporterDashBoardMain />} />
           <Route
             path="/AdministratorLogin"
             element={
@@ -37,11 +38,21 @@ function App() {
             }
           />
           <Route
+            path="/Authen"
+            element={
+              <>
+                <Header />
+                <AuthenticationMain />
+                <Footer />
+              </>
+            }
+          />
+          <Route
             path="/ReporterLogin"
             element={
               <>
                 <Header />
-                <AdministratorLogin />
+                <ReporterLogin />
                 <Footer />
               </>
             }
@@ -49,7 +60,7 @@ function App() {
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
-    </div>
+    </AdminContextProvider>
   );
 }
 
