@@ -17,13 +17,13 @@ const AddNews = () => {
     author: "",
     title: "",
     description: "",
-    imageFile: null,
-    images: [],
     country: "",
-    date: "",
-    time: "",
     tags: [""],
     categories: [],
+    date: "",
+    time: "",
+    images: [],
+    id:id,
   });
 
   const categories = [
@@ -110,6 +110,7 @@ const AddNews = () => {
         time: formData.time,
         description: formData.description,
         images: formData.images,
+        approvedBy:`${id}`,
       };
 
       const response = await adminPostAdd(dataToSubmit);

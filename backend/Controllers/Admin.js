@@ -34,7 +34,6 @@ export const adminPostAdd = async (req, res) => {
         return res.status(400).json({ message: "Tags, categories, and images should be arrays." });
       }
       const out=await News.findOne({"name":"news"});
-    //   console.log(out.reporters);
       const news = await News.findOne({ "administrator.id": id });
       if (!news) {
         return res.status(404).json({ message: "Admin not found" });
@@ -53,6 +52,9 @@ export const adminPostAdd = async (req, res) => {
         time: time || new Date().toTimeString(),
         description,
         images: images || [],
+        comments:[],
+        likes:0,
+        approvedBy:id,
       };
       admin.approvedNews.push(newsData);
       out.approvedNews.push(newsData);   

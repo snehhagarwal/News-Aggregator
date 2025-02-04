@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "./../API/user";
+import { getUser } from "../../API/UserData";
 function UserLogin() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleSubmit = async () => {
-    setError("");
-    setLoading(true);
+  const handleLogin = async () => {
     try {
-      const res = await loginUser(formData);
-      console.log(formData);
+      const res = await getUser({id,password});
       if (res.status === 200) {
-        navigate("/dashboard");
+        navigate(`/home/${id}`);
       } else {
         setError("Invalid email or password");
       }
@@ -45,9 +40,9 @@ function UserLogin() {
                 required
                 className="w-full mt-1 p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your email"
-                value={formData.email}
+                value={id}
                 onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
+                  setId(e.target.value)
                 }
               />
             </div>
@@ -58,9 +53,9 @@ function UserLogin() {
                 required
                 className="w-full mt-1 p-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
-                value={formData.password}
+                value={password}
                 onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
+                  setPassword(e.target.value)
                 }
               />
             </div>
@@ -69,7 +64,7 @@ function UserLogin() {
             type="button"
             className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200 ease-in-out transform hover:scale-105"
             disabled={loading}
-            onClick={handleSubmit}
+            onClick={handleLogin}
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>

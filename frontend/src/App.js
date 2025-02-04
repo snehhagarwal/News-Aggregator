@@ -12,6 +12,7 @@
   import { useNewsContext } from "./context";
   import { getNewsData } from "./API/newsData";
   import UserLogin from "./Components/User/Login";
+import UserSignup from "./Components/User/Signup";
 
   function App() {
     const { setNews } = useNewsContext();
@@ -29,6 +30,8 @@
         <Router>
           <Routes>
             <Route path="/" element={<AnimatedComponent />} />
+            <Route path="/home/:userId" element={<AnimatedComponent />} />
+            <Route path="/signup" element={<UserSignup />} />
             <Route
               path="/countries/:countrycode"
               element={

@@ -4,15 +4,15 @@ import { Announcement } from "@mui/icons-material";
 import { useNewsContext } from "../context";
 import Header from "./Header";
 import { useAppContext } from "../Context/ThemeContext";
+import { initSocket, listenToNewNews, disconnectSocket } from './WebSocket/socket';
 
 const Home = () => {
   const itemsPerPage = 8;
-  const { darkMode, toggleTheme, searchQuery } = useAppContext(); 
+  const { darkMode, toggleTheme, searchQuery } = useAppContext();
   const [currentPage, setCurrentPage] = useState(1);
-  const { news } = useNewsContext();
-  console.log(news);
+  const { news, updateNews } = useNewsContext();  
   const newsData = news.approvedNews;
-  
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     localStorage.setItem("darkMode", darkMode);
@@ -21,6 +21,25 @@ const Home = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
+
+  // WebSocket connection and event handling
+  useEffect(() => {
+    // Initialize socket connection
+    const socket = initSocket();
+
+    // Listen for 'newNews' event and update news state
+    listenToNewNews((newNewsItem) => {
+      updateNews((prevNews) => ({
+        ...prevNews,
+        approvedNews: [newNewsItem, ...prevNews.approvedNews],  // Prepend the new news item
+      }));
+    });
+
+    // Cleanup the socket connection on unmount
+    return () => {
+      disconnectSocket();
+    };
+  }, []);
 
   const filteredData = newsData.filter((newsItem) =>
     newsItem.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -48,7 +67,6 @@ const Home = () => {
               Breaking News
             </span>
           </div>
-
           <div className="relative w-full overflow-hidden rounded-full mt-2 border border-blue-300 bg-blue-50/60">
             <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-blue-100 via-transparent" />
             <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-blue-100 via-transparent" />
@@ -66,7 +84,7 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-14">
           {currentItems.length > 0 ? (
             currentItems.map((newsItem, index) => (
-              <NewsCard key={index} {...newsItem}  />
+              <NewsCard key={index} {...newsItem} />
             ))
           ) : (
             <p className="text-black text-lg col-span-full text-center">
