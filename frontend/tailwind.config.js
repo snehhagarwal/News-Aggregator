@@ -13,6 +13,7 @@ module.exports = {
       animation: {
         flip: "flip 0.7s ease-in-out", // Flip animation
         pulseCircle: "pulseCircle 1.5s ease-in-out infinite", // Pulsing circle animation
+        marquee: "marquee 70s linear infinite", // Marquee animation
       },
       keyframes: {
         flip: {
@@ -24,7 +25,14 @@ module.exports = {
           "0%, 100%": { transform: "scale(1)", opacity: "1" },
           "50%": { transform: "scale(1.2)", opacity: "0.5" },
         },
+        marquee: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
       },
-    }
-  }
+    },
+  },
+  plugins: [
+    require('daisyui'),
+  ],
 }
