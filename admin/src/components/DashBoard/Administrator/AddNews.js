@@ -69,6 +69,8 @@ const AddNews = () => {
           "https://api.cloudinary.com/v1_1/dthriaot4/image/upload",
           cloudinaryFormData
         );
+        
+        console.log(cloudinaryResponse);
         uploadedImages.push(cloudinaryResponse.data.secure_url);
         console.log(uploadedImages);
       }

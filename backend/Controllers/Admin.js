@@ -4,7 +4,6 @@ export const loginAdmin = async (req, res) => {
     if (!name || !password) {
         return res.status(400).json({ message: "Username and password are required." });
     }
-
     try {
         const news = await News.findOne({ "administrator.id": name });
         if (!news) {
@@ -20,7 +19,6 @@ export const loginAdmin = async (req, res) => {
         if (admin.password !== password) {
             return res.status(401).json({ message: "Incorrect password. Please try again." });
         }
-
         const out = [
             admin.approvedNews,
             admin.approvedNewsVid,
@@ -28,15 +26,12 @@ export const loginAdmin = async (req, res) => {
             admin.nonApprovedNewsVid,
             admin.reporters
         ];
-
         return res.status(200).json({ message: "Login successful", out });
-
     } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({ message: "Internal server error. Please try again later." });
     }
 };
-    
 export const adminPostAdd = async (req, res) => {
     try {
         const { newsID, id, author, title, country, tags, categories, date, time, description, images } = req.body;
@@ -85,8 +80,6 @@ export const adminPostAdd = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
-
-  
 export const adminVidPostAdd = async (req, res) => {
     try {
         const { id,author, title, country, tags, categories, date, time, description, videos } = req.body;
@@ -122,8 +115,6 @@ export const adminVidPostAdd = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
-
-
 export const addReporter = async (req, res) => {
     try {
         console.log("Adding reporter...");

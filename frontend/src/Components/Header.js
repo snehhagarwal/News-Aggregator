@@ -44,7 +44,7 @@ const Header = () => {
 
       <motion.a href="#home" className="hover:text-blue-400 transition duration-300">Home</motion.a>
 
-      <div className="relative">
+      {/* <div className="relative">
         <button className="hover:text-blue-400 transition duration-300 flex items-center gap-1" onClick={() => toggleDropdown("headlines")}>
           Top Headlines ▼
         </button>
@@ -77,7 +77,7 @@ const Header = () => {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
 
       <Link to="/UserLogin">
         <motion.button

@@ -55,7 +55,7 @@ const AdSideBar = ({ setActivePage }) => {
             Add News with Photos
           </motion.li>
 
-          <motion.li
+          {/* <motion.li
             className="flex items-center text-md hover:bg-gray-800 p-2 rounded-lg cursor-pointer transition-all duration-300"
             onClick={() => setActivePage("addNewsVid")}
             whileHover={{ scale: 1.05 }}
@@ -63,7 +63,7 @@ const AdSideBar = ({ setActivePage }) => {
           >
             <AddCircleOutlineIcon className="mr-3 text-yellow-500" />
             Add News with Videos
-          </motion.li>
+          </motion.li> */}
 
           <motion.li
             className="flex items-center text-md hover:bg-gray-800 p-2 rounded-lg cursor-pointer transition-all duration-300"
@@ -85,7 +85,7 @@ const AdSideBar = ({ setActivePage }) => {
             Edit / Delete News Article
           </motion.li>
           
-          <motion.li
+          {/* <motion.li
             className="flex items-center text-md hover:bg-gray-800 p-2 rounded-lg cursor-pointer transition-all duration-300"
             onClick={() => setActivePage("editNewsVid")}
             whileHover={{ scale: 1.05 }}
@@ -93,7 +93,7 @@ const AdSideBar = ({ setActivePage }) => {
           >
             <DesignServicesIcon className="mr-3 text-amber-500" />
             Edit News / Delete Video
-          </motion.li>
+          </motion.li> */}
 
           <motion.li
             className="flex items-center text-md hover:bg-gray-800 p-2 rounded-lg cursor-pointer transition-all duration-300"
