@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8000";
+const URL = "https://news-aggregator-qje3.onrender.com";
 export const loginAdmin = async (data) => {
   try {
     console.log(data);
